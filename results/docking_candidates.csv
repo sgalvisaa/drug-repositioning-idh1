@@ -1,0 +1,11 @@
+pert_iname,smiles,tanimoto,MW,LogP,TPSA,moa
+osilodrostat,Fc1cc(ccc1[C@H]1CCc2cncn12)C#N,0.212,227.242,2.429,41.61,cytochrome P450 inhibitor
+clorprenaline,CC(C)NC[C@@H](O)c1ccccc1Cl |&1:5|,0.2,213.708,2.371,32.26,adrenergic receptor agonist
+clopidogrel,COC(=O)[C@@H](N1CCc2sccc2C1)c1ccccc1Cl,0.19,321.829,3.674,29.54,purinergic receptor antagonist
+nizofenone,CCN(CC)Cc1nccn1-c1ccc(cc1C(=O)c1ccccc1Cl)[N+]([O-])=O,0.184,412.877,4.507,81.27,ion channel antagonist
+azaperone,Fc1ccc(cc1)C(=O)CCCN1CCN(CC1)c1ccccn1,0.183,327.403,3.006,36.44,dopamine receptor antagonist
+cariprazine,CN(C)C(=O)N[C@H]1CC[C@H](CCN2CCN(CC2)c2cccc(Cl)c2Cl)CC1 |r|,0.182,427.42,4.336,38.82,dopamine receptor antagonist
+apalutamide,CNC(=O)c1ccc(cc1F)N1C(=S)N(C(=O)C11CCC1)c1cnc(C#N)c(c1)C(F)(F)F,0.179,477.443,3.532,89.33,androgen receptor antagonist
+lanoconazole,"Clc1ccccc1[C@H]1CS\C(S1)=C(\C#N)n1ccnc1 |&1:7,r|",0.178,319.842,4.407,41.61,sterol demethylase inhibitor
+prasugrel,"CC(=O)Oc1cc2CN(CCc2s1)[C@@H](C(=O)C1CC1)c1ccccc1F |&1:13,r|",0.175,373.449,3.891,46.61,purinergic receptor antagonist
+larotrectinib,O[C@H]1CCN(C1)C(=O)Nc1cnn2ccc(nc12)N1CCC[C@@H]1c1cc(F)ccc1F,0.174,428.443,2.948,86.0,alk tyrosine kinase receptor inhibitor | tropomyosin receptor kinase inhibitor

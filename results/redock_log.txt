@@ -1,0 +1,6 @@
+                               score  rmsd_mean  rmsd_max  pass_2A
+test                                                              
+A_self_docking_crystal_rings   -9.74       1.67      1.71     True
+B_from_smiles_rdkit_conformer -10.19       6.50      6.50    False
+
+Crystal pose: score_only -8.50, after local optimization -9.29 kcal/mol

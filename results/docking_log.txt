@@ -1,0 +1,101 @@
+Box center (crystal ivosidenib centroid): [ 26.694 -10.306   4.392], size [22.0, 22.0, 22.0]
+
+[1] Ivosidenib (co-crystallized in 8T7O)
+  control    ivosidenib       seed 1: -10.185 kcal/mol
+  control    ivosidenib       seed 2: -10.190 kcal/mol
+  control    ivosidenib       seed 3: -10.190 kcal/mol
+
+[1] Vorasidenib (approved 2024 for IDH-mutant glioma)
+  control    vorasidenib      seed 1:  -8.019 kcal/mol
+  control    vorasidenib      seed 2:  -7.955 kcal/mol
+  control    vorasidenib      seed 3:  -8.011 kcal/mol
+
+[2] Screening candidates
+  candidate  osilodrostat     seed 1:  -6.887 kcal/mol
+  candidate  osilodrostat     seed 2:  -6.877 kcal/mol
+  candidate  osilodrostat     seed 3:  -6.874 kcal/mol
+  candidate  clorprenaline    seed 1:  -5.333 kcal/mol
+  candidate  clorprenaline    seed 2:  -5.328 kcal/mol
+  candidate  clorprenaline    seed 3:  -5.367 kcal/mol
+  candidate  clopidogrel      seed 1:  -6.929 kcal/mol
+  candidate  clopidogrel      seed 2:  -6.947 kcal/mol
+  candidate  clopidogrel      seed 3:  -6.984 kcal/mol
+  candidate  nizofenone       seed 1:  -7.354 kcal/mol
+  candidate  nizofenone       seed 2:  -7.330 kcal/mol
+  candidate  nizofenone       seed 3:  -7.323 kcal/mol
+  candidate  azaperone        seed 1:  -7.799 kcal/mol
+  candidate  azaperone        seed 2:  -7.452 kcal/mol
+  candidate  azaperone        seed 3:  -7.811 kcal/mol
+  candidate  cariprazine      seed 1:  -7.571 kcal/mol
+  candidate  cariprazine      seed 2:  -7.624 kcal/mol
+  candidate  cariprazine      seed 3:  -7.478 kcal/mol
+  candidate  apalutamide      seed 1:  -8.509 kcal/mol
+  candidate  apalutamide      seed 2:  -8.499 kcal/mol
+  candidate  apalutamide      seed 3:  -8.503 kcal/mol
+  candidate  lanoconazole     seed 1:  -6.742 kcal/mol
+  candidate  lanoconazole     seed 2:  -6.746 kcal/mol
+  candidate  lanoconazole     seed 3:  -6.743 kcal/mol
+  candidate  prasugrel        seed 1:  -7.598 kcal/mol
+  candidate  prasugrel        seed 2:  -7.623 kcal/mol
+  candidate  prasugrel        seed 3:  -7.598 kcal/mol
+  candidate  larotrectinib    seed 1:  -8.742 kcal/mol
+  candidate  larotrectinib    seed 2:  -8.719 kcal/mol
+  candidate  larotrectinib    seed 3:  -8.740 kcal/mol
+
+[3] Background: random filter-passing drugs (seed 1 only)
+  background trimipramine maleate seed 1:  -5.753 kcal/mol
+  background phenylbenzimidazole-sulfonic-acid seed 1:  -7.008 kcal/mol
+  background chlorphensin-carbamate seed 1:  -5.676 kcal/mol
+  background dexchlorpheniramine seed 1:  -6.880 kcal/mol
+  background galantamine      seed 1:  -5.713 kcal/mol
+  background carazolol        seed 1:  -6.640 kcal/mol
+  background fluoxetine hydrochloride seed 1:  -7.693 kcal/mol
+  background levobetaxolol    seed 1:  -6.307 kcal/mol
+  background alimemazine      seed 1:  -6.337 kcal/mol
+  background oxfendazole      seed 1:  -7.323 kcal/mol
+  background tolmetin         seed 1:  -6.975 kcal/mol
+  background fenoldopam       seed 1:  -5.711 kcal/mol
+  background albendazole-oxide seed 1:  -6.152 kcal/mol
+  background ramelteon        seed 1:  -7.049 kcal/mol
+  background zolmitriptan     seed 1:  -6.730 kcal/mol
+  background alverine         seed 1:  -6.760 kcal/mol
+  background clofibric-acid   seed 1:  -5.460 kcal/mol
+  background isavuconazole    seed 1:  -8.847 kcal/mol
+  background decamethonium    seed 1:  -5.381 kcal/mol
+  background mequinol         seed 1:  -4.425 kcal/mol
+  background diethyltoluamide seed 1:  -5.875 kcal/mol
+  background haloperidol      seed 1:  -7.826 kcal/mol
+  background mianserin        seed 1:  -7.763 kcal/mol
+  background dosulepin        seed 1:  -7.929 kcal/mol
+  background iloprost         seed 1:  -7.829 kcal/mol
+  background tizanidine       seed 1:  -5.497 kcal/mol
+  background tacrine          seed 1:  -6.619 kcal/mol
+  background primaquine       seed 1:  -6.241 kcal/mol
+  background guanaben-acetate seed 1:  -5.793 kcal/mol
+  background oxelaidin        seed 1:  -6.124 kcal/mol
+  background voxelotor        seed 1:  -7.354 kcal/mol
+  background clomethiazole    seed 1:  -3.826 kcal/mol
+  background propiverine      seed 1:  -7.418 kcal/mol
+  background olopatadine      seed 1:  -8.186 kcal/mol
+  background sotalol          seed 1:  -6.062 kcal/mol
+  background chloroxoquinoline seed 1:  -5.674 kcal/mol
+  background dydrogesterone   seed 1:  -9.018 kcal/mol
+  background proxymetacaine   seed 1:  -5.834 kcal/mol
+  background tetramisole      seed 1:  -6.270 kcal/mol
+  background sorbic-acid      seed 1:  -4.595 kcal/mol
+
+      compound     group   best   mean   sd  heavy_atoms  ligand_efficiency
+   ivosidenib   control -10.19 -10.19 0.00           41               0.25
+larotrectinib candidate  -8.74  -8.73 0.01           31               0.28
+  apalutamide candidate  -8.51  -8.50 0.01           33               0.26
+  vorasidenib   control  -8.02  -8.00 0.03           27               0.30
+    azaperone candidate  -7.81  -7.69 0.20           24               0.32
+    prasugrel candidate  -7.62  -7.61 0.01           26               0.29
+  cariprazine candidate  -7.62  -7.56 0.07           28               0.27
+   nizofenone candidate  -7.35  -7.34 0.02           29               0.25
+  clopidogrel candidate  -6.98  -6.95 0.03           21               0.33
+ osilodrostat candidate  -6.89  -6.88 0.01           17               0.40
+ lanoconazole candidate  -6.75  -6.74 0.00           20               0.34
+clorprenaline candidate  -5.37  -5.34 0.02           14               0.38
+
+Background (n=40): median -6.32, 90th pct -7.84 kcal/mol
