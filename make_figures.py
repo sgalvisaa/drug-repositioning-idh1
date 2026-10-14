@@ -1,5 +1,6 @@
 """Figures for the README from results/docking_summary.csv and results/docking_scores_all_seeds.csv."""
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 COLORS = {"control": "#2a78d6", "candidate": "#eb6834", "background": "#a3a29c"}
@@ -10,6 +11,15 @@ plt.rcParams.update({"font.family": "Helvetica", "font.size": 10, "axes.edgecolo
 summary = pd.read_csv("results/docking_summary.csv")
 seeds = pd.read_csv("results/docking_scores_all_seeds.csv")
 bg = summary[summary.group == "background"]
+
+# --- Size adjustment: fit score ~ heavy atoms across all docked drugs, keep the residual ---
+slope, intercept = np.polyfit(summary.heavy_atoms, summary["mean"], 1)
+summary["expected_from_size"] = slope * summary.heavy_atoms + intercept
+summary["beyond_size"] = summary["mean"] - summary["expected_from_size"]  # negative = better than size predicts
+summary["size_adjusted_rank"] = summary["beyond_size"].rank().astype(int)
+(summary.sort_values("beyond_size")
+ [["compound", "group", "mean", "heavy_atoms", "expected_from_size", "beyond_size", "size_adjusted_rank"]]
+ .round(2).to_csv("results/size_adjusted.csv", index=False))
 
 # --- Figure 1: scores vs the random-drug background ---
 ranked = summary[summary.group != "background"].sort_values("mean", ascending=False)
@@ -54,6 +64,9 @@ for _, r in summary[summary.group != "background"].iterrows():
         ax.annotate(r.compound, (r.heavy_atoms, r["mean"]), xytext=(6, 2),
                     textcoords="offset points", fontsize=8.5, color=INK)
 r = summary.heavy_atoms.corr(-summary["mean"])  # size vs predicted affinity
+xs = np.array([summary.heavy_atoms.min(), summary.heavy_atoms.max()])
+ax.plot(xs, slope * xs + intercept, color=MUTED, lw=1.2, ls="--", zorder=2,
+        label=f"Size-only fit ({slope:.2f} kcal/mol per heavy atom)")
 ax.set_xlabel("Heavy atoms (molecule size)")
 ax.set_ylabel("Vina score, kcal/mol")
 ax.invert_yaxis()
@@ -66,4 +79,6 @@ ax.set_title(f"Bigger molecules score better\nPearson r = {r:.2f} between size a
              f"n = {len(summary)} drugs", loc="left", fontsize=11, color=INK)
 fig.tight_layout()
 fig.savefig("results/size_bias.png", dpi=200, facecolor="white")
-print(f"Saved figures. Size-score correlation r = {r:.2f}")
+print(f"Saved figures. Size-score correlation r = {r:.2f}, slope {slope:.3f} kcal/mol per heavy atom")
+print(summary.sort_values("beyond_size")[["compound", "group", "mean", "expected_from_size", "beyond_size",
+                                           "size_adjusted_rank"]].round(2).to_string(index=False))

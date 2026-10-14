@@ -2,7 +2,7 @@
 
 **Goal:** look for FDA-approved drugs that might be repurposed against the IDH1 R132H mutation that drives many gliomas, by combining a ligand-based screen (drug-likeness, brain penetration, similarity to the IDH1 inhibitor ivosidenib) with structure-based docking into the IDH1 R132H inhibitor pocket.
 
-**Result:** the screening funnel narrowed 2,712 approved drugs to 10 candidates. After docking them into the inhibitor pocket with a validated setup, **larotrectinib (-8.7 kcal/mol) and apalutamide (-8.5) scored best**. Both scored better than vorasidenib (-8.0), an approved IDH inhibitor, and beat 38 of 40 random approved drugs docked the same way. They still fell short of ivosidenib (-10.2), and docking scores here track molecule size closely (r = 0.85). So this is a **hypothesis worth testing in an enzyme assay, not evidence of binding.**
+**Result:** the screening funnel narrowed 2,712 approved drugs to 10 candidates. After docking them into the inhibitor pocket with a validated setup, **larotrectinib (-8.7 kcal/mol) and apalutamide (-8.5) had the best raw scores**, better than vorasidenib (-8.0, an approved IDH inhibitor) and 38 of 40 random approved drugs, though short of ivosidenib (-10.2). **But docking scores here track molecule size closely (r = 0.85), and after adjusting for size, neither candidate stands out:** larotrectinib scores only 0.26 kcal/mol better than its size predicts (rank 17 of 52), and apalutamide scores worse than its size predicts. Even the two approved IDH inhibitors sit on the size line. So this docking setup does not separate real inhibitors from random drugs, and the candidates are **weak leads to test in an enzyme assay, not evidence of binding.**
 
 ![Docking scores for candidates and controls against a random-drug background](results/docking_scores.png)
 
@@ -19,7 +19,7 @@
 | 8. Docking | AutoDock Vina 1.2.7, 22 Å box on the crystal ivosidenib, exhaustiveness 16, 3 seeds | `results/docking_summary.csv` |
 | 9. Context | 2 approved IDH inhibitors as positive controls + 40 random drugs from the same filtered pool | Background distribution |
 
-Scripts: [`screening.py`](screening.py) (steps 1-5), [`docking.py`](docking.py) (6, 8, 9), [`validate_redock.py`](validate_redock.py) (7), [`make_figures.py`](make_figures.py).
+Scripts: [`screening.py`](screening.py) (steps 1-5), [`docking.py`](docking.py) (6, 8, 9), [`validate_redock.py`](validate_redock.py) (7), [`make_figures.py`](make_figures.py) (figures + size adjustment).
 
 ## Results
 | Compound | Role | Vina score (mean of 3 seeds, kcal/mol) | Heavy atoms |
@@ -39,6 +39,23 @@ Scripts: [`screening.py`](screening.py) (steps 1-5), [`docking.py`](docking.py) 
 | 40 random approved drugs | background | median -6.32, 90th percentile -7.84 | |
 
 Scores were stable across seeds (largest standard deviation 0.20 kcal/mol, azaperone).
+
+## Size-adjusted scores
+Because Vina scores improve with molecule size, I fit score against heavy-atom count across all 52 docked drugs (about -0.17 kcal/mol per heavy atom) and compared each drug's actual score with the score its size alone predicts. Negative "beyond size" means better than size predicts. Full table: [`results/size_adjusted.csv`](results/size_adjusted.csv).
+
+| Compound | Role | Vina score | Expected from size | Beyond size | Rank of 52 |
+|---|---|---|---|---|---|
+| dydrogesterone | random drug (best overall) | -9.02 | -7.13 | -1.89 | 1 |
+| osilodrostat | candidate (best candidate) | -6.88 | -6.12 | -0.76 | 5 |
+| larotrectinib | candidate | -8.73 | -8.47 | -0.26 | 17 |
+| vorasidenib | positive control | -8.00 | -7.80 | -0.20 | 20 |
+| ivosidenib | positive control | -10.19 | -10.15 | -0.04 | 25 |
+| apalutamide | candidate | -8.50 | -8.81 | +0.30 | 36 |
+
+What this means:
+- **Larotrectinib and apalutamide rank first among candidates mostly because they are among the largest.** Once size is accounted for, both land in the middle of the pack.
+- **The positive controls don't stand out either.** Ivosidenib and vorasidenib score almost exactly what their size predicts, so in this setup the score mostly measures size, not a specific fit to the IDH1 inhibitor pocket.
+- The best size-adjusted drug is a random one (dydrogesterone), which is a reminder that a single docking score is a weak signal.
 
 ## Docking validation
 A docking setup is usually considered validated when it can redock the crystal ligand to within 2 Å RMSD of its crystal position.
@@ -67,11 +84,11 @@ This is a reworked version of my RBIF110 (Brandeis, cheminformatics) final proje
 
 The screening half reproduced exactly (every funnel count and the same 10 candidates). Larotrectinib stayed the top candidate (-8.53 before, -8.73 now). Other rankings changed: in the original, nizofenone was second (-7.15) and cariprazine third (-6.66); apalutamide is now second.
 
-![Docking score vs. molecule size](results/size_bias.png)
+![Docking score vs. molecule size, with the size-only fit line](results/size_bias.png)
 
 ## Limitations
 - **Weak similarity.** The best Tanimoto similarity to ivosidenib in the filtered library was only 0.21, so the 10 candidates are not real structural analogs of ivosidenib; similarity mostly acted as a tiebreaker.
-- **Size bias.** Vina scores improve with molecule size (r = 0.85 across all 52 docked drugs). Larotrectinib and apalutamide are among the larger candidates, which explains part of their advantage. Ligand efficiency (score per heavy atom) is in `results/docking_summary.csv`.
+- **Size bias.** Vina scores improve with molecule size (r = 0.85 across all 52 docked drugs). Larotrectinib and apalutamide are among the larger candidates, and size explains most of their advantage (see Size-adjusted scores). Ligand efficiency (score per heavy atom) is in `results/docking_summary.csv`.
 - **Scores do not separate real inhibitors.** Vorasidenib, a proven IDH inhibitor, scored below two candidates and below three random drugs (dydrogesterone -9.0, isavuconazole -8.8, olopatadine -8.2). Part of this may be induced fit: the pocket in 8T7O is shaped around ivosidenib.
 - **Rigid receptor, neutral ligands.** No protein flexibility, and ligands were docked in their neutral form.
 - **Brain penetration** is a simple property rule, not a measured value.
